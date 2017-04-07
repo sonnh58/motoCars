@@ -1,0 +1,41 @@
+<ActionBar title="My App" class="action-bar">
+</ActionBar>
+
+    <!--<StackLayout height="1000" orientation="horizontal" class="m-15"  *ngFor="let group of groupsByMake">-->
+        <!--<Label height="100" [nsRouterLink]="['/item', group.id]" [text]="group.make"-->
+               <!--class="list-group-item"></Label>-->
+        <!--<StackLayout orientation="vertical" *ngFor="let car of group.cars">-->
+            <!--<Image [src]="car.image_url" stretch="none"></Image>-->
+            <!--<Label [text]="fruit"></Label>-->
+        <!--</StackLayout>-->
+    <!--</StackLayout>-->
+<PullToRefresh (refresh)="refreshMe($event)">
+
+<ScrollView>
+    <GridLayout class="m-15" [rows]="rows">
+        <StackLayout [row]="i" *ngFor="let group of groupsByMake ; let i = index;">
+            <Label class="h3 border" height="30" [text]="group.make"></Label>
+                <GridLayout class="h3 m-15" rows="auto auto auto auto auto auto auto auto" *ngFor="let car of group.cars">
+                    <Image row="0" src="{{car.image_url}}" stretch="aspectFill"></Image>
+                    <Label row="1" [text]="car.title" textWrap="true" class="h3 bold" ></Label>
+                    <Label row="2" *ngIf="car.price != '$0' && car.soldTo == 'For Sale'" class="bold"
+                           [text]="'Price: '+ car.price " textWrap="true"></Label>
+                    <Label row="2" *ngIf="car.price == '$0' && car.soldTo == 'For Sale'" class="bold"
+                           text="Price: Please Inquire" textWrap="true"></Label>
+                    <Label row="2" *ngIf="car.soldTo != 'For Sale'" class="highlight-text"
+                           [text]="'Sold! Thank You, ' + car.soldTo" textWrap="true"></Label>
+
+                    <Label row="3" [text]="'Engine: ' + car.engine" textWrap="true"></Label>
+                    <Label row="4" [text]="'Transmission: '+ car.transmission" textWrap="true"></Label>
+                    <Label row="5" [text]="'Exterior:' + car.exteriorColor" textWrap="true"></Label>
+                    <Label row="6" [text]="'Interior' + car.interiorColor" textWrap="true"></Label>
+                    <Label row="7" [text]="'Mileage' + car.mileage" textWrap="true"></Label>
+                </GridLayout>
+            <!--<StackLayout *ngFor="let car of group.cars">-->
+                <!--<Image [src]="car.image_url" stretch="none"></Image>-->
+                <!--<Label [text]="fruit"></Label>-->
+            <!--</StackLayout>-->
+        </StackLayout>
+    </GridLayout>
+</ScrollView>
+</PullToRefresh>

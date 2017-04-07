@@ -1,0 +1,7 @@
+<ActionBar title="Details" class="action-bar"></ActionBar>
+<FlexboxLayout flexDirection="column" class="page">
+    <FlexboxLayout flexDirection="column" class="m-15"  *ngFor="let item of items">
+        <Label class="h2" [text]="item.title"></Label>
+        <Label class="h2" [text]="item.description"></Label>
+    </FlexboxLayout>
+</FlexboxLayout>
